@@ -2,14 +2,11 @@ name: Alertas de bolsa
 
 on:
   schedule:
-    # Cada 15 minutos. GitHub puede retrasar la ejecución unos minutos
-    # en horas de mucha carga; es normal.
     - cron: "*/15 * * * *"
-  # Permite lanzarlo a mano desde la pestaña "Actions" (botón Run workflow).
   workflow_dispatch:
 
 permissions:
-  contents: write   # Necesario para guardar el estado con un commit automático.
+  contents: write
 
 concurrency:
   group: alertas-bolsa
@@ -17,16 +14,17 @@ concurrency:
 
 jobs:
   alertas:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 8
     steps:
       - name: Descargar el repositorio
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
-      - name: Instalar Python 3.11
-        uses: actions/setup-python@v5
+      - name: Instalar Python 3.11 (con caché de pip)
+        uses: actions/setup-python@v7
         with:
           python-version: "3.11"
+          cache: "pip"
 
       - name: Instalar dependencias
         run: pip install -r requirements.txt
