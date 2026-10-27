@@ -1,6 +1,9 @@
 {
   "precios_previos": {
-    "BTC-USD": 80046.7421875
+    "BTC-USD": 80169.34375,
+    "SOI.PA": 120.8499984741211,
+    "WPP.L": 391.9960021972656,
+    "AMS.SW": 18.700000762939453
   },
   "alertas_pendientes": []
 }
